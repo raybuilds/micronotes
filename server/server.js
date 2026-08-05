@@ -12,8 +12,7 @@ let nextId = 1;
  
 // TODO 1: GET /api/notes — send back the notes array
 app.get("/api/notes", (req, res) => {
-  // To be implemented in Task 4
-  res.status(501).send("Not Implemented");
+  res.json(notes);
 });
  
 // TODO 2: POST /api/notes — build a note from req.body, add it to the array, send it back
