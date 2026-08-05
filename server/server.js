@@ -17,8 +17,14 @@ app.get("/api/notes", (req, res) => {
  
 // TODO 2: POST /api/notes — build a note from req.body, add it to the array, send it back
 app.post("/api/notes", (req, res) => {
-  // To be implemented in Task 5
-  res.status(501).send("Not Implemented");
+  const newNote = {
+    id: nextId++,
+    title: req.body.title,
+    content: req.body.content,
+    createdAt: new Date()
+  };
+  notes.push(newNote);
+  res.status(201).json(newNote);
 });
  
 app.listen(5000, () => console.log("Server running on port 5000"));
