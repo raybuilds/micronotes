@@ -6,7 +6,6 @@ function App() {
   const [content, setContent] = useState("");
  
   // TODO 3: on page load, fetch all notes from GET /api/notes
-  // hint: use useEffect + async/await, same pattern as warmup.js A5
   const fetchNotes = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/notes");
@@ -22,7 +21,8 @@ function App() {
   }, []);
  
   // TODO 4: send a POST request with { title, content }, then update the list
-  const handleAddNote = async () => {
+  const handleAddNote = async (e) => {
+    if (e) e.preventDefault();
     if (!title || !content) return;
     try {
       const response = await fetch("http://localhost:5000/api/notes", {
@@ -44,15 +44,30 @@ function App() {
   };
  
   return (
-    <div>
+    <div className="container">
       <h1>MicroNotes</h1>
-      <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
-      <input value={content} onChange={(e) => setContent(e.target.value)} placeholder="Content" />
-      <button onClick={handleAddNote}>Add Note</button>
+      <form onSubmit={handleAddNote} className="form">
+        <input 
+          className="input"
+          value={title} 
+          onChange={(e) => setTitle(e.target.value)} 
+          placeholder="Title" 
+        />
+        <input 
+          className="input"
+          value={content} 
+          onChange={(e) => setContent(e.target.value)} 
+          placeholder="Content" 
+        />
+        <button type="submit" className="btn">Add Note</button>
+      </form>
  
-      <ul>
+      <ul className="notes-list">
         {notes.map((note) => (
-          <li key={note.id}>{note.title}: {note.content}</li>
+          <li key={note.id} className="note-item">
+            <h3 className="note-title">{note.title}</h3>
+            <p className="note-content">{note.content}</p>
+          </li>
         ))}
       </ul>
     </div>
