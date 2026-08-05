@@ -59,4 +59,4 @@ micronotes/
 
 ## Screenshot
 ![MicroNotes Running](screenshot.png)
-*(Note: Replace `screenshot.png` in the repository root with a screenshot of the running app as required for submission).*
+
